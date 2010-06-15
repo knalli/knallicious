@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string>yes</string>
+		<key>Key</key>
+		<string>usePopupTagging</string>
+		<key>Secure</key>
+		<false/>
+		<key>Title</key>
+		<string>Use a popup for tagging instead of new window</string>
+		<key>Titles</key>
+		<array>
+			<string>Yes</string>
+			<string>No</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>yes</string>
+			<string>no</string>
+		</array>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>2</real>
+		<key>Key</key>
+		<string>checkInterval</string>
+		<key>MaximumValue</key>
+		<real>24</real>
+		<key>MinimumValue</key>
+		<real>1</real>
+		<key>Title</key>
+		<string>Interval of checking incoming links (hours)</string>
+		<key>Titles</key>
+		<array>
+			<string>1 hour</string>
+			<string>2 hours</string>
+			<string>4 hours</string>
+			<string>8 hours</string>
+			<string>12 hours</string>
+			<string>24 hours</string>
+		</array>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<real>1</real>
+			<real>2</real>
+			<real>4</real>
+			<real>8</real>
+			<real>12</real>
+			<real>24</real>
+		</array>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>yes</string>
+		<key>Key</key>
+		<string>useBookmarked</string>
+		<key>Title</key>
+		<string>Use "Bookmarked?" feature</string>
+		<key>Titles</key>
+		<array>
+			<string>Yes</string>
+			<string>No</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>yes</string>
+			<string>no</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Separator</string>
+	</dict>
+</array>
+</plist>

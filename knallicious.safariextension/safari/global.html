@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Extension Bundle</title>
+	    <script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+	    <script type="text/javascript" src="DeliciousApi.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		
+	var cacheOfLastCheckedTimestamp = {
+		tag: 0,
+		list: 0
+	};
+	
+	var Extension = (function(){
+		
+		var bookmarks = [];
+		
+		function loadBookmarks() {
+			console.log('Starting downloading bookmarks..');
+			bookmarks = DeliciousApi.getBookmarkUrls();
+			console.log('Downloading bookmarks finished.');
+		}
+		
+		function _isUrlBookmarked(url) {
+			return $.inArray(url, bookmarks) >= 0;
+		}
+		
+		function isUrlBookmarked(url) {
+			if (url) {
+				console.log('Check if url is already bookmarked: ' + url);
+				if (_isUrlBookmarked(url)) {
+					return true;
+				} else {
+					// hmm.. try the two options w/ and w/o a trailing slash.
+					if (url.substring(url.length-1) === '/') {
+						if (_isUrlBookmarked(url.substring(0, url.length-1))) {
+							return true;
+						}
+					} else {
+						if (_isUrlBookmarked(url+'/')) {
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		
+		function clearBookmarks(){
+			bookmarks = [];
+		}
+		
+		function refreshBookmarks() {
+			console.log('Refreshing');
+			loadBookmarks();
+		}
+		
+		function getBookmarkedUrls() {
+			return bookmarks;
+		}
+		
+		return {
+			isUrlBookmarked: isUrlBookmarked,
+			loadBookmarks: loadBookmarks,
+			clearBookmarks: clearBookmarks,
+			refreshBookmarks: refreshBookmarks,
+			getBookmarkedUrls: getBookmarkedUrls
+		};
+	})();
+	
+	function getSettingsByKey(key) {
+		return safari.extension.settings.getItem(key);
+	}
+		
+	safari.application.addEventListener("command", function(event) {
+		if (event.command === 'inbox') {
+			// Opens the inbox of the current user.
+			event.target.browserWindow.openTab().url = 'http://delicious.com/inbox';
+	    } else if (event.command === 'tag') {
+	        var currentUrl = event.target.browserWindow.activeTab.url;
+		    var currentTitle = event.target.browserWindow.activeTab.title;
+	        if (currentUrl) {
+				var newUrl = DeliciousApi.getNewBookmarkUrl(currentUrl, currentTitle, {headlessGui: true});
+				
+				if (getSettingsByKey('usePopupTagging') === 'yes') {
+					// Delegate to in-page script (iframe or popup).
+					event.target.browserWindow.activeTab.page.dispatchMessage("openNewBookmarkWindow", newUrl);
+				} else {
+					// Opens Popup
+					var win = safari.application.openBrowserWindow();
+					win.activeTab.url = newUrl;
+				}
+			}			
+	    }
+	}, false);
+
+	safari.application.addEventListener("validate", function(event) {
+		if (event.command === 'inbox') {
+			var hours = parseInt(getSettingsByKey('checkInterval'), 10);
+			if (cacheOfLastCheckedTimestamp[event.command] < event.timeStamp - (hours*60*1000)) {
+				console.log('Refreshing counter.');
+				cacheOfLastCheckedTimestamp[event.command] = event.timeStamp;
+				event.target.badge = DeliciousApi.getPostsUpdateInboxNew();
+			} else {
+				//console.log('No refresh counter.');
+			}
+		} else if (event.command === 'tag') {
+	        // Disable the button if there is no URL loaded in the tab.
+	        event.target.disabled = !event.target.browserWindow.activeTab.url;
+	    } else if (event.command === 'bookmarked') {
+			event.target.disabled = !Extension.isUrlBookmarked(event.target.browserWindow.activeTab.url);
+		}
+	}, false);
+	
+	safari.application.addEventListener('change', function(event){
+		console.log(event);
+		if (event.key === 'useBookmarked') {
+			if (event.newValue === 'on') {
+				Extension.refreshBookmarks();
+			} else {
+				Extension.clearBookmarks();
+			}
+		}
+	}, false);
+	
+	if (getSettingsByKey('useBookmarked') === 'yes') {
+		Extension.loadBookmarks();
+	}
+	
+		</script>
+	</head>
+</html>

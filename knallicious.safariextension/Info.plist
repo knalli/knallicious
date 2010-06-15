@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>knalli</string>
+	<key>CFBundleDisplayName</key>
+	<string>knallicious</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.knallisworld.knallicious</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.2</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Global Page</key>
+		<string>safari/global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>tag</string>
+				<key>Image</key>
+				<string>images/tag.png</string>
+				<key>Label</key>
+				<string>Tag with Delicious</string>
+				<key>Palette Label</key>
+				<string>Tag with Delicious</string>
+				<key>Tool Tip</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>inbox</string>
+				<key>Image</key>
+				<string>images/inbox.png</string>
+				<key>Label</key>
+				<string>Delicious Inbox</string>
+				<key>Palette Label</key>
+				<string>Delicious Inbox</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>bookmarked</string>
+				<key>Image</key>
+				<string>images/bookmarked.png</string>
+				<key>Label</key>
+				<string>Bookmarked?</string>
+				<key>Palette Label</key>
+				<string>Bookmarked?</string>
+				<key>Tool Tip</key>
+				<string>Is this page already bookmarked?</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>safari/in-page.delicious.js</string>
+				<string>safari/jquery/jquery-1.4.2.min.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Smart Del.icio.us Extension</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://github.com/knalli/knallicious/raw/master/manifest.plist</string>
+	<key>Website</key>
+	<string>http://github.com/knalli/knallicious</string>
+</dict>
+</plist>

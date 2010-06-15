@@ -1,0 +1,40 @@
+Smart Del.icio.us Extension
+===========================
+
+This extension adds buttons for del.icio.us into the toolbar.
+
+Tag
+Tags the current views page (url).
+
+Inbox (with badge count)
+Displays if any and how many new inbox urls are available. A click will show the user's inbox page.
+
+Bookmarked?
+Checks if the current url is already bookmarked or not.
+
+Feel free to use or modify it. 
+
+Download it under: http://github.com/downloads/knalli/knallicious/knallicious.safariextz
+
+Current features
+----------------
+ * Add a "Tag this" button in the toolbar.
+ * Add a "Inbox" button in the toolbar with a badge count of incoming links.
+ * Add a "Bookmarked?" button in the toolbar. The button will be active if you have already bookmarked the current url. Otherwise the button is inactive/disabled or simply grey.
+
+Note: The refresh interval can be modified in the settings (default: every two hours).
+
+
+Next on plan
+------------
+The list of bookmarks used for "Bookmarked?" will not be refreshed. I' planning to add an option with interval setting. Also it seems that the change event does not work (nothing happens).
+
+
+Changes
+------
+
+1.0.2 (13.06.2010)
+ * Added "Bookmarked?" feature and button.
+
+1.0.1 (13.06.2010)
+ * Initial release.
