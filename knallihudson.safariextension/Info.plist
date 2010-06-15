@@ -5,15 +5,15 @@
 	<key>Author</key>
 	<string>Jan Philipp</string>
 	<key>CFBundleDisplayName</key>
-	<string>knallicious</string>
+	<string>knalliHudson</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.knallisworld.knallicious</string>
+	<string>de.knallisworld.knallihudson</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -22,53 +22,33 @@
 		<array>
 			<dict>
 				<key>Identifier</key>
-				<string>tag</string>
+				<string>failedJobs</string>
 				<key>Image</key>
-				<string>images/tag.png</string>
+				<string>images/hudson.png</string>
 				<key>Label</key>
-				<string>Tag with Delicious</string>
+				<string>Failed Jobs</string>
 				<key>Palette Label</key>
-				<string>Tag with Delicious</string>
-				<key>Tool Tip</key>
-				<string></string>
+				<string>Failed Jobs</string>
 			</dict>
 			<dict>
 				<key>Identifier</key>
-				<string>inbox</string>
+				<string>unstableJobs</string>
 				<key>Image</key>
-				<string>images/inbox.png</string>
+				<string>images/hudson.png</string>
 				<key>Label</key>
-				<string>Delicious Inbox</string>
+				<string>Unstable Jobs</string>
 				<key>Palette Label</key>
-				<string>Delicious Inbox</string>
-			</dict>
-			<dict>
-				<key>Identifier</key>
-				<string>bookmarked</string>
-				<key>Image</key>
-				<string>images/bookmarked.png</string>
-				<key>Label</key>
-				<string>Bookmarked?</string>
-				<key>Palette Label</key>
-				<string>Bookmarked?</string>
-				<key>Tool Tip</key>
-				<string>Is this page already bookmarked?</string>
+				<string>Unstable Jobs</string>
 			</dict>
 		</array>
 	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
-		<dict>
-			<key>End</key>
-			<array>
-				<string>safari/in-page.delicious.js</string>
-				<string>safari/jquery/jquery-1.4.2.min.js</string>
-			</array>
-		</dict>
+		<dict/>
 	</dict>
 	<key>Description</key>
-	<string>Smart Del.icio.us Extension</string>
+	<string>Smart Hudson CI Extension</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

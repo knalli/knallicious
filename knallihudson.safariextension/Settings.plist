@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string></string>
+		<key>Key</key>
+		<string>serverUrl</string>
+		<key>Title</key>
+		<string>Server Url (incl. /hudson)</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>5</real>
+		<key>Key</key>
+		<string>refreshInterval</string>
+		<key>MaximumValue</key>
+		<real>1440</real>
+		<key>MinimumValue</key>
+		<real>1</real>
+		<key>Title</key>
+		<string>Refresh Interval</string>
+		<key>Titles</key>
+		<array>
+			<string>1 minute</string>
+			<string>2 minutes</string>
+			<string>5 minutes</string>
+			<string>10 minutes</string>
+			<string>15 minutes</string>
+			<string>30 minutes</string>
+			<string>60 minutes</string>
+			<string>120 minutes</string>
+		</array>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<real>1</real>
+			<real>2</real>
+			<real>5</real>
+			<real>10</real>
+			<real>15</real>
+			<real>30</real>
+			<real>60</real>
+			<real>120</real>
+		</array>
+	</dict>
+</array>
+</plist>

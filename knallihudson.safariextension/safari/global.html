@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Extension Bundle</title>
+	    <script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		
+	var cacheOfLastCheckedTimestamp = {
+		jobs: 0,
+		failedJobs: 0,
+		unstableJobs: 0
+	};
+		
+	var Extension = (function(){
+		
+		var result = {
+			blue: -1,
+			red: -1,
+			yellow: -1
+		};
+		
+		function getJobStats() {
+			
+			var timeStamp = new Date().getTime();
+			var minutes = getSettingByKey('refreshInterval');
+			
+			if (cacheOfLastCheckedTimestamp['jobs'] >= timeStamp - (minutes*60*1000)) {
+				return result;
+			}
+			cacheOfLastCheckedTimestamp['jobs'] = timeStamp;
+			
+			result = {
+				blue: -1,
+				red: -1,
+				yellow: -1
+			};
+	
+			var serverUrl = getSettingByKey('serverUrl');
+			
+			if (serverUrl) {
+				serverUrl = (serverUrl + '/api/json');
+				console.log('Fetching from ' + serverUrl);
+				$.ajax({
+					async: false,
+					cache: false,
+					url: serverUrl,
+					dataType: 'json',
+					success: function(data, status, request) {
+						if (data && data.jobs && $.isArray(data.jobs)) {
+							result.blue = 0;
+							result.red = 0;
+							result.yellow = 0;
+							$.each(data.jobs, function(i, job){
+								if (job.color === 'red') {
+									result.red++;
+								} else if (job.color === 'blue') {
+									result.blue++;
+								} else if (job.color === 'yellow') {
+									result.yellow++;
+								}
+							});
+						} else {
+							console.log('Invalid data response.');
+						}
+					},
+					error: function(request, textStatus, errorThrown){
+						console.log('Response errored.');
+					}
+				});
+			} else {
+				console.log('Invalid server url.');
+			}
+			
+			console.info('Result ' + result);
+			
+			return result;
+		}
+		
+		function load() {
+			getJobStats();
+		}
+
+		function getUnstableJobs() {
+			var result = getJobStats();
+			return result.yellow;
+		}
+		
+		function getFailedJobs() {
+			var result = getJobStats();
+			return result.red;
+		}
+		
+		return {
+			getUnstableJobs: getUnstableJobs,
+			getFailedJobs: getFailedJobs,
+			load: load
+		};
+	})();
+	
+	function getSettingByKey(key) {
+		return safari.extension.settings.getItem(key);
+	}
+		
+	safari.application.addEventListener('command', function(event) {
+		if (event.command === 'failedJobs') {
+			event.target.browserWindow.openTab().url = getSettingByKey('serverUrl');
+	    } else if (event.command === 'unstableJobs') {
+			event.target.browserWindow.openTab().url = getSettingByKey('serverUrl');
+	    }
+	}, false);
+
+	safari.application.addEventListener('validate', function(event) {
+		if (event.command === 'failedJobs') {
+			var count = Extension.getFailedJobs();
+			event.target.badge = count;
+			event.target.disabled = (count < 0);
+		} else if (event.command === 'unstableJobs') {
+			var count = Extension.getUnstableJobs();
+			event.target.badge = count;
+			event.target.disabled = (count < 0);
+		}
+	}, false);
+	
+	Extension.load();
+	
+		</script>
+	</head>
+</html>
