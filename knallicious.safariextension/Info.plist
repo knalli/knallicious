@@ -10,9 +10,9 @@
 	<string>de.knallisworld.knallicious</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleVersion</key>
-	<string>2</string>
 	<key>CFBundleShortVersionString</key>
+	<string>1.0.2</string>
+	<key>CFBundleVersion</key>
 	<string>1.0.2</string>
 	<key>Chrome</key>
 	<dict>
@@ -82,7 +82,7 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://github.com/knalli/knallicious/raw/master/manifest.plist</string>
+	<string>http://github.com/knalli/knallicious/raw/master/update-manifest.plist</string>
 	<key>Website</key>
 	<string>http://github.com/knalli/knallicious</string>
 </dict>
