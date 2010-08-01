@@ -40,9 +40,9 @@ var Extension = (function(){
 	}
 	
 	function checkVideo(video) {
-		return _assert(video.find('> ul > li').length === 2, "Should be found exactly two elements.") &&
+		return _assert(video.find('> ul > li').length >= 2, "Should be found at least two elements.") &&
 		_assert(video.find('> ul > li.videoSubline').length === 1, "The videoSubline element found.") &&
-		_assert(video.find('> ul > li[class!="videoSubline"]').length === 1, "Alternate video contents found (1).") &&
+		_assert(video.find('> ul > li[class!="videoSubline"]').length >= 1, "Alternate video contents found (1).") &&
 		_assert(video.find('> ul > li[class!="videoSubline"] > ul.videoDownloadList > li > ul.videoDownload > li').length > 1, "Alternate video contents found (2).");
 	}
 	
