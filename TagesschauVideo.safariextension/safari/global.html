@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Extension Bundle</title>
+		<script type="text/javascript">
+			safari.application.addEventListener('message', function(event) {
+				if (event.name === 'getSettings') {
+					var settings = {
+						'enabled_on_articles' : safari.extension.settings['enabled_on_articles'],
+						'enabled_on_teaserboxes' : safari.extension.settings['enabled_on_teaserboxes']
+					};
+					event.target.page.dispatchMessage('extensionInit', settings);
+			   	}
+			}, false);
+		</script>
+	</head>
+</html>
