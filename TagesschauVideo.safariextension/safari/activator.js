@@ -1,0 +1,1 @@
+Extensions.TagesschauVideo.init();

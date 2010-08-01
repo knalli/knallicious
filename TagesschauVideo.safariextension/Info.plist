@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Jan Philipp</string>
+	<key>CFBundleDisplayName</key>
+	<string>TagesschauVideo</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.knallisworld.tagesschauvideo</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>Chrome</key>
+	<dict/>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>safari/activator.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>safari/jquery/jquery-1.4.2.min.js</string>
+				<string>safari/Extension.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>HTML5 Video für "tagesschau.de"</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>www.tagesschau.de</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>Some</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://github.com/knalli/knallicious/raw/master/update-manifest.plist</string>
+	<key>Website</key>
+	<string>http://github.com/knalli/knallicious</string>
+</dict>
+</plist>

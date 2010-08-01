@@ -1,7 +1,5 @@
 # Collection of Safari extensions
 
-## knallicious
-<a href="http://github.com/knalli/knallicious/raw/master/knallicious-1.0.2.safariextz">Download</a>
-
-## knalliHudson
-<a href="http://github.com/knalli/knallicious/raw/master/knallihudson-1.0.0.safariextz">Download</a>
+## TagesschauVideo
+<a href="http://github.com/knalli/knallicious/tree/master/TagesschauVideo.safariextension/">More</a>
+<a href="http://github.com/knalli/knallicious/raw/master/TagesschauVideo-1.0.0.safariextz">Download</a>
