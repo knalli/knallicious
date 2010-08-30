@@ -11,9 +11,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -45,6 +45,7 @@
 			<key>Allowed Domains</key>
 			<array>
 				<string>www.tagesschau.de</string>
+				<string>wetter.tagesschau.de</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>

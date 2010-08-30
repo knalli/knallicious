@@ -16,6 +16,109 @@ var Extension = (function(){
 	
 	var replacements = [
 		{
+			title: 'Default videos in common news articles (two columns layout, "wetter").',
+			key: 'enabled_on_articles',
+			config: {
+				query: '#centerCol2 div.contModule',
+				check: function(video) {
+					return _assert(video.find('> div.wetterPadding > table.conttext').length == 1, "Should found a table with alternates.") &&
+						_assert(video.find('> div.wetterPadding > table.conttext > tbody > tr').length >= 2, "Should found at leat 2 alternates.") &&
+						_assert(video.find('> div.wetterPadding > table.conttext > tbody > tr > td > div.videodownload > a').length >= 1, "Alternate video contents found (1).");
+				},
+				getSizes: function(video) {
+					var embed = video.find('> div.wetterPadding > span#player2_div > embed');
+					console.info(video);
+					return {
+						height: parseInt(embed.attr('height'), 10), 
+						width: parseInt(embed.attr('width'), 10)
+					};
+				},
+				getAlternates: function(video) {
+					var alternates = video.find('> div.wetterPadding > table.conttext > tbody > tr > td > div.videodownload > a');
+					var alternateVideos = [];
+					alternates.each(function(index, alternate){
+						alternate = $(alternate);
+						var title = alternate.find('> span').text();
+						var url = alternate.attr('href');
+						console.info('"'+title+'" found with url to: '+url);
+						if (title === 'Groß' && url.substring(url.length-4) === '.mp4') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['h264 Groß'].type
+							});
+						} else if (title === 'Mittel' && url.substring(url.length-9) === '.webm.ogv') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['Ogg Mittel'].type
+							});
+						}
+					});
+					return alternateVideos;
+				},
+				removeFlashTag: function(video) {
+					$(video.find('> div.wetterPadding > span#player2_div > embed')).remove();
+				},
+				createVideoTag: createVideoTag,
+				insertVideoTag: function(video, html) {
+					$(html).appendTo(video.find('> div.wetterPadding').eq(0));
+				}
+			},
+		},
+		{
+			title: 'Default videos in common news articles (two columns layout, e.g. "Aktuell, 24").',
+			key: 'enabled_on_articles',
+			config: {
+				query: '#contentWrapper div.contModule',
+				check: function(video) {
+					return _assert(video.find('> p#player2_div').length == 1, "Should found the flash container.") && 
+						_assert(video.find('> table.conttext').length == 1, "Should found a table with alternates.") &&
+						_assert(video.find('> table.conttext > tbody > tr').length >= 2, "Should found at leat 2 alternates.") &&
+						_assert(video.find('> table.conttext > tbody > tr > td > div.videodownload > a').length >= 1, "Alternate video contents found (1).");
+				},
+				getSizes: function(video) {
+					var embed = video.find('> p#player2_div > embed');
+					console.info(video);
+					return {
+						height: parseInt(embed.attr('height'), 10), 
+						width: parseInt(embed.attr('width'), 10)
+					};
+				},
+				getAlternates: function(video) {
+					var alternates = video.find('> table.conttext > tbody > tr > td > div.videodownload > a');
+					var alternateVideos = [];
+					alternates.each(function(index, alternate){
+						alternate = $(alternate);
+						var title = alternate.find('> span').text();
+						var url = alternate.attr('href');
+						console.info('"'+title+'" found with url to: '+url);
+						if (title === 'Groß' && url.substring(url.length-4) === '.mp4') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['h264 Groß'].type
+							});
+						} else if (title === 'Mittel' && url.substring(url.length-9) === '.webm.ogv') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['Ogg Mittel'].type
+							});
+						}
+					});
+					return alternateVideos;
+				},
+				removeFlashTag: function(video) {
+					$(video.find('> p#player2_div > embed')).remove();
+				},
+				createVideoTag: createVideoTag,
+				insertVideoTag: function(video, html) {
+					$(html).appendTo(video.find('> p#player2_div'));
+				}
+			},
+		},
+		{
 			title: 'Default videos in common news articles (three columns layout).',
 			key: 'enabled_on_articles',
 			config: {
@@ -166,6 +269,7 @@ var Extension = (function(){
 						width: sizes.width,
 						preload: getSettingByKey('preload')
 					});
+					console.info(html);
 					options.insertVideoTag(video, html);
 				}
 			})
