@@ -19,8 +19,8 @@ var Extension = (function(){
 		return config[key];
 	}
 	
-	function init(gicenConfig) {
-		config = gicenConfig;
+	function init(givenConfig) {
+		config = givenConfig;
 		
 		var videos;
 		
@@ -103,7 +103,8 @@ var Extension = (function(){
 	}
 	
 	function insertHTML5VideoTag_InGeneralArticles(video, alternates, config) {
-		var html = '<video controls="controls" height="'+config.height+'" width="'+config.width+'">';
+		var preload = getSettingByKey('preload');
+		var html = '<video controls="controls" height="'+config.height+'" width="'+config.width+'" preload="'+preload+'">';
 		for (var i = 0; i < alternates.length; i++) {
 			html += '<source src="'+alternates[i].url+'" type="'+alternates[i].type+'" />';
 		}
@@ -143,16 +144,19 @@ var Extension = (function(){
 	}
 	
 	function insertHTML5VideoTag_Teaserbox(video, alternates, config) {
-		var html = '<video controls="controls" height="'+config.height+'" width="'+config.width+'">';
+		var preload = getSettingByKey('preload');
+		console.info(preload);
+		var html = '<video controls="controls" height="'+config.height+'" width="'+config.width+'" preload="'+preload+'">';
 		for (var i = 0; i < alternates.length; i++) {
-			html += '<source src="'+alternates[i].url+'" type="'+alternates[i].type+'" />';
+			html += '<source src="'+alternates[i].url.trim()+'" type="'+alternates[i].type+'" />';
 		}
 		html += '</video>';
 		$(html).appendTo(video.find('> div#player2_div'));
 	}
 	
 	return {
-		init : init
+		init : init,
+		getSettingByKey : getSettingByKey
 	};
 })();
 

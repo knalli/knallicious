@@ -22,5 +22,27 @@
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>auto</string>
+		<key>Key</key>
+		<string>preload</string>
+		<key>Title</key>
+		<string>Preload</string>
+		<key>Titles</key>
+		<array>
+			<string>Automatisch (auto)</string>
+			<string>Informationen (meta)</string>
+			<string>Nichts (none)</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>auto</string>
+			<string>meta</string>
+			<string>none</string>
+		</array>
+	</dict>
 </array>
 </plist>

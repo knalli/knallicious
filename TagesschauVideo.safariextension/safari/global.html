@@ -7,7 +7,8 @@
 				if (event.name === 'getSettings') {
 					var settings = {
 						'enabled_on_articles' : safari.extension.settings['enabled_on_articles'],
-						'enabled_on_teaserboxes' : safari.extension.settings['enabled_on_teaserboxes']
+						'enabled_on_teaserboxes' : safari.extension.settings['enabled_on_teaserboxes'],
+						'preload' : safari.extension.settings['preload']
 					};
 					event.target.page.dispatchMessage('extensionInit', settings);
 			   	}
