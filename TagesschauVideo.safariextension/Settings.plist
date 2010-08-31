@@ -44,5 +44,15 @@
 			<string>none</string>
 		</array>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<true/>
+		<key>Key</key>
+		<string>enabled_on_articles_old_ones</string>
+		<key>Title</key>
+		<string>Aktivieren bei alten Playern (Archiv)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
 </array>
 </plist>

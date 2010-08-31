@@ -27,7 +27,6 @@ var Extension = (function(){
 				},
 				getSizes: function(video) {
 					var embed = video.find('> div.wetterPadding > span#player2_div > embed');
-					console.info(video);
 					return {
 						height: parseInt(embed.attr('height'), 10), 
 						width: parseInt(embed.attr('width'), 10)
@@ -40,7 +39,7 @@ var Extension = (function(){
 						alternate = $(alternate);
 						var title = alternate.find('> span').text();
 						var url = alternate.attr('href');
-						console.info('"'+title+'" found with url to: '+url);
+						//console.info('"'+title+'" found with url to: '+url);
 						if (title === 'Groß' && url.substring(url.length-4) === '.mp4') {
 							alternateVideos.push({
 								title : title,
@@ -79,7 +78,6 @@ var Extension = (function(){
 				},
 				getSizes: function(video) {
 					var embed = video.find('> p#player2_div > embed');
-					console.info(video);
 					return {
 						height: parseInt(embed.attr('height'), 10), 
 						width: parseInt(embed.attr('width'), 10)
@@ -92,7 +90,7 @@ var Extension = (function(){
 						alternate = $(alternate);
 						var title = alternate.find('> span').text();
 						var url = alternate.attr('href');
-						console.info('"'+title+'" found with url to: '+url);
+						//console.info('"'+title+'" found with url to: '+url);
 						if (title === 'Groß' && url.substring(url.length-4) === '.mp4') {
 							alternateVideos.push({
 								title : title,
@@ -143,7 +141,7 @@ var Extension = (function(){
 						alternate = $(alternate);
 						var title = alternate.find('> span.title').text();
 						var url = alternate.find('> a.downloadLink').attr('href');
-						console.info('"'+title+'" found with url to: '+url);
+						//console.info('"'+title+'" found with url to: '+url);
 						if (usableVideoFormats[title]) {
 							alternateVideos.push({
 								title : title,
@@ -202,6 +200,56 @@ var Extension = (function(){
 					$(html).appendTo(video.find('> div#player2_div'));
 				}
 			}
+		},
+		{
+			title: 'Old school flash players, e.g. archive videos.',
+			key: 'enabled_on_articles_old_ones',
+			config: {
+				query: '#contentWrapper #media',
+				check: function(video) {
+					return _assert(video.find('> div > #playercontrol .block').length >= 1, "Should be found at least the block element with download link.") &&
+						_assert(video.find('> div > #playercontrol .block a').length >= 1, "Alternate video contents found.");
+				},
+				getSizes: function(video) {
+					var embed = video.find('> div.singleImg > p > embed');
+					return {
+						height: parseInt(embed.attr('height'), 10), 
+						width: parseInt(embed.attr('width'), 10)
+					};
+				},
+				getAlternates: function(video) {
+					var alternates = video.find('> div > #playercontrol .block a');
+					var alternateVideos = [];
+					alternates.each(function(index, alternate){
+						alternate = $(alternate);
+						var title = alternate.find('> span').text();
+						var url = alternate.attr('href');
+						//console.info('"'+title+'" found with url to: '+url);
+						if (title === 'H.264/MPEG4 Video' && url.substring(url.length-4) === '.mp4') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['h264 Groß'].type
+							});
+						} else if (title === 'Ogg Theora Video' && url.substring(url.length-9) === '.webm.ogv') {
+							alternateVideos.push({
+								title : title,
+								url: url,
+								type : usableVideoFormats['Ogg Mittel'].type
+							});
+						}
+					});
+					return alternateVideos;
+				},
+				removeFlashTag: function(video) {
+					$(video.find('div.singleImg > p > embed')).remove();
+					$(video.find('#playercontrol')).remove();
+				},
+				createVideoTag: createVideoTag,
+				insertVideoTag: function(video, html) {
+					$(html).appendTo(video.find('div.singleImg > p'));
+				}
+			},
 		}
 	];
 	
@@ -217,10 +265,10 @@ var Extension = (function(){
 		for (var i = 0; i < replacements.length; i++) {
 			replacement = replacements[i];
 			if (getSettingByKey(replacement.key) === true) {
-				console.info('Active: ' + replacement.title);
+				//console.info('Active: ' + replacement.title);
 				replaceVideo(replacement.config);
 			} else {
-				console.info('Not active: ' + replacement.title);
+				//console.info('Not active: ' + replacement.title);
 			}
 		}
 	}
@@ -269,7 +317,7 @@ var Extension = (function(){
 						width: sizes.width,
 						preload: getSettingByKey('preload')
 					});
-					console.info(html);
+					//console.info(html);
 					options.insertVideoTag(video, html);
 				}
 			})
@@ -293,10 +341,10 @@ var Extension = (function(){
 
 	function _assert(assert, message) {
 		if (!assert) {
-			console.info("Assertion failed: " + message);
+			//console.info("Assertion failed: " + message);
 			return false;
 		} else {
-			console.info("Assertion ok: " + message);
+			//console.info("Assertion ok: " + message);
 		}
 		return true;
 	}

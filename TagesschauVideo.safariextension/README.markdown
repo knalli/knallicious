@@ -2,11 +2,16 @@
 
 Diese Safari Extension ersetzt die neuen Flash-Videos sofort in das HTML5-Pendant. Eine Portierung/Adaption als Chrome- oder Firefox-Extension sollte einfach sein. Wird gerne verlinkt.
 
- * Filme in Artikeln (seit 1.0.0)
- * Teaserbox rechts oben "Tagesschau in 100 Sekunden" (seit 1.0.2)
- * Einstellungen zum getrennten Aktivieren (seit 1.0.2)
- * Neue Einstellungsoption: Preload (seit 1.0.3)
- * Weitere Videos werden erkannt: Wetter, Aktuelles, 24 (seit 1.0.3)
+ * 1.0.0
+	 * Filme in Artikeln
+ * 1.0.2
+	 * Teaserbox rechts oben "Tagesschau in 100 Sekunden"
+	 * Einstellungen zum getrennten Aktivieren
+ * 1.0.3
+	 * Neue Einstellungsoption: Preload
+	 * Weitere Videos werden erkannt: Wetter, Aktuelles, 24
+ * 1.0.4
+ 	 * Weitere Videos werden erkannt: Archiv & Co. (alter Player, nur sofern Downloadlink verfügbar)
 
 # More
-<a href="http://github.com/knalli/knallicious/raw/master/TagesschauVideo-1.0.3.safariextz">Download</a>
+<a href="http://github.com/knalli/knallicious/raw/master/TagesschauVideo-1.0.4.safariextz">Download</a>
